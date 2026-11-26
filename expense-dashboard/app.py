@@ -3,6 +3,7 @@
 import csv
 from datetime import datetime
 import io
+import os
 from flask import Flask, Response, jsonify, render_template, request
 
 import analytics
@@ -222,4 +223,5 @@ def load_sample_data():
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port, debug=os.environ.get("PORT") is None)
