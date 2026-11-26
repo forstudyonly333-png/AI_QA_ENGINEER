@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI QA Engineer — Intelligent Code Quality & Debugging Platform</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/static/styles.css" />
+</head>
+<body>
+  <!-- A. Sticky Navigation Bar -->
+  <header class="navbar">
+    <div class="container nav-inner">
+      <a href="#home" class="brand-logo">
+        <span class="brand-badge" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="4" y="8" width="16" height="12" rx="4"></rect>
+            <path d="M12 4v4"></path>
+            <circle cx="9" cy="14" r="1.3" fill="currentColor"></circle>
+            <circle cx="15" cy="14" r="1.3" fill="currentColor"></circle>
+            <path d="M9 17.5h6"></path>
+          </svg>
+        </span>
+        <span>AI QA <span class="gradient-text">Engineer</span></span>
+      </a>
+
+      <nav class="nav-links" aria-label="Primary Navigation">
+        <a href="#home">Home</a>
+        <a href="#analyzer">Project Analyzer</a>
+        <a href="#debugger">Code Debugger</a>
+        <a href="#ai-review">AI Review</a>
+        <a href="#reports">Reports</a>
+        <a href="#about">About</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="#analyzer" class="btn btn-primary btn-sm">Get Started</a>
+        <button type="button" id="mobileMenuBtn" class="mobile-menu-btn" aria-label="Toggle Menu" aria-expanded="false">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <div id="mobileDrawer" class="mobile-drawer">
+      <a href="#home">Home</a>
+      <a href="#analyzer">Project Analyzer</a>
+      <a href="#debugger">Code Debugger</a>
+      <a href="#ai-review">AI Review</a>
+      <a href="#reports">Reports</a>
+      <a href="#about">About</a>
+    </div>
+  </header>
+
+  <main>
+    <!-- B. Hero Section -->
+    <section id="home" class="hero">
+      <div class="container hero-grid">
+        <div>
+          <span class="section-pill">Multi-Agent Python QA Platform</span>
+          <h1 class="hero-title">
+            Your Intelligent AI Partner for <span class="gradient-text">Better Code.</span>
+          </h1>
+          <p class="hero-desc">
+            Analyze code, detect potential bugs, generate test cases, and improve software quality with intelligent AI-powered agents.
+          </p>
+          <div class="hero-ctas">
+            <a href="#analyzer" class="btn btn-primary">Start Analyzing</a>
+            <a href="#features" class="btn btn-secondary">Explore Features</a>
+          </div>
+          <div class="hero-meta-row">
+            <span class="hero-meta-item">
+              <span class="badge badge-ai">AST</span> Single-Pass Static Inspection
+            </span>
+            <span class="hero-meta-item">
+              <span id="heroAiStatusBadge" class="badge badge-neutral">Checking Gemini...</span>
+            </span>
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <div class="hero-orb">
+            <div class="floating-chip chip-tl"><span>🔬</span> AI Code Analysis</div>
+            <div class="floating-chip chip-tr"><span>🛡️</span> Bug Detection</div>
+            <div class="floating-chip chip-bl"><span>🧪</span> Automated Testing</div>
+            <div class="floating-chip chip-br"><span>✨</span> Smart Code Review</div>
+
+            <img
+              id="heroRobotImg"
+              src="/static/assets/hero-robot.jpg"
+              alt="AI QA Engineer friendly 3D robot assistant"
+              class="robot-float"
+              onerror="this.classList.add('hidden'); document.getElementById('heroRobotFallback').classList.remove('hidden');"
+            />
+            <div id="heroRobotFallback" class="hidden robot-float" style="display:flex;align-items:center;justify-content:center;">
+              <svg viewBox="0 0 240 240" width="240" height="240" aria-label="AI Robot Illustration">
+                <defs>
+                  <linearGradient id="botBody" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0%" stop-color="#FFFFFF"/>
+                    <stop offset="100%" stop-color="#FCE7F3"/>
+                  </linearGradient>
+                  <linearGradient id="botAccent" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0%" stop-color="#EC4899"/>
+                    <stop offset="100%" stop-color="#6D28D9"/>
+                  </linearGradient>
+                </defs>
+                <circle cx="120" cy="120" r="92" fill="#F3E8FF" opacity="0.6"/>
+                <line x1="120" y1="32" x2="120" y2="54" stroke="#6D28D9" stroke-width="5" stroke-linecap="round"/>
+                <circle cx="120" cy="26" r="8" fill="#EC4899"/>
+                <rect x="64" y="54" width="112" height="82" rx="28" fill="url(#botBody)" stroke="#EC4899" stroke-width="3"/>
+                <rect x="80" y="74" width="80" height="38" rx="16" fill="#252238"/>
+                <circle cx="102" cy="93" r="7" fill="#F472B6"/>
+                <circle cx="138" cy="93" r="7" fill="#A78BFA"/>
+                <rect x="74" y="144" width="92" height="58" rx="24" fill="url(#botBody)" stroke="#6D28D9" stroke-width="3"/>
+                <circle cx="120" cy="173" r="14" fill="url(#botAccent)"/>
+                <path d="M114 173l4 4 8-8" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- C. Statistics Section (Real Application Data Only) -->
+    <section class="section" style="padding-top: 12px; padding-bottom: 28px;">
+      <div class="container">
+        <div class="stats-grid">
+          <div class="card card-hover stat-card">
+            <div class="stat-icon" style="background: var(--pink-soft); color: var(--pink-primary);">📁</div>
+            <div id="statProjects" class="stat-value">0</div>
+            <div class="stat-label">Projects Analyzed</div>
+            <div id="statProjectsNote" class="stat-note">Recorded across backend runs</div>
+          </div>
+          <div class="card card-hover stat-card">
+            <div class="stat-icon" style="background: var(--error-soft); color: var(--error);">🪲</div>
+            <div id="statIssues" class="stat-value">0</div>
+            <div class="stat-label">Issues Detected</div>
+            <div class="stat-note">Cumulative static findings</div>
+          </div>
+          <div class="card card-hover stat-card">
+            <div class="stat-icon" style="background: var(--success-soft); color: var(--success);">🧪</div>
+            <div id="statTests" class="stat-value">0</div>
+            <div class="stat-label">Test Cases Generated</div>
+            <div class="stat-note">Suggested scenarios (not executed)</div>
+          </div>
+          <div class="card card-hover stat-card">
+            <div class="stat-icon" style="background: var(--lavender); color: var(--purple-deep);">🤖</div>
+            <div id="statAgents" class="stat-value">6</div>
+            <div class="stat-label">Analysis Agents</div>
+            <div class="stat-note">Loader · AST · Bug · Test · Report · AI</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- D. Project Analyzer Dashboard -->
+    <section id="analyzer" class="section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-pill">Project Analyzer Dashboard</span>
+          <h2 class="section-title">Inspect Any Python Codebase in Seconds</h2>
+          <p class="section-subtitle">
+            Enter a local project directory or browse folders on this machine to run our 6-agent static analysis and AI review pipeline.
+          </p>
+        </div>
+
+        <div class="card analyzer-box">
+          <form id="analyzeForm">
+            <div class="input-row">
+              <div class="input-wrap">
+                <input
+                  type="text"
+                  id="projectPath"
+                  class="text-input"
+                  placeholder="Enter project directory path (e.g., D:\AI_QA_ENGINEER or ./)"
+                  required
+                />
+              </div>
+              <button type="button" id="browseBtn" class="btn btn-secondary">
+                📂 Browse Folder
+              </button>
+              <button type="submit" id="submitBtn" class="btn btn-primary" style="min-width: 170px;">
+                <span id="submitSpinner" class="spinner hidden"></span>
+                <span id="submitBtnText">Start Analysis</span>
+              </button>
+            </div>
+          </form>
+
+          <div class="helper-pills">
+            <span style="font-size: 0.8rem; color: var(--text-secondary); font-weight: 600;">Quick Select:</span>
+            <button type="button" id="useWorkspaceBtn" class="pill-btn">Current Workspace</button>
+            <button type="button" id="clearResultsBtn" class="pill-btn">Reset Dashboard</button>
+          </div>
+
+          <div id="statusBox" class="status-banner hidden" role="status" aria-live="polite"></div>
+
+          <div id="progressPanel" class="progress-panel hidden">
+            <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;">
+              <strong id="progressStageLabel" style="font-size:0.9rem;color:var(--purple-deep);">Initializing pipeline...</strong>
+              <span id="progressPercentLabel" class="font-accent" style="font-size:0.85rem;font-weight:700;color:var(--pink-primary);">0%</span>
+            </div>
+            <div class="progress-track">
+              <div id="progressFill" class="progress-fill"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Empty State -->
+        <div id="analyzerEmptyState" class="card" style="margin-top: 20px; padding: 34px; text-align: center;">
+          <div style="font-size: 2.2rem; margin-bottom: 8px;">🤖✨</div>
+          <h3 style="margin: 0 0 6px;">Ready to Analyze Your Python Project</h3>
+          <p style="margin: 0; color: var(--text-secondary); max-width: 560px; margin-inline: auto; font-size: 0.94rem;">
+            Results for Project Information, Code Metrics, Functions, Classes, Imports, Bug Findings, Suggested Test Cases, and AI Code Review will appear here after analysis.
+          </p>
+        </div>
+
+        <!-- 8-Panel Results Dashboard -->
+        <div id="resultsSection" class="dashboard-results hidden">
+          <!-- 1. Project Information -->
+          <div class="card panel-card col-span-4">
+            <div class="panel-head">
+              <h3 class="panel-title">📁 Project Information</h3>
+              <span id="projFrameworkBadge" class="badge badge-ai">Python</span>
+            </div>
+            <div id="projectInfoBody" class="scroll-box" style="font-size: 0.88rem;"></div>
+          </div>
+
+          <!-- 2. Code Metrics & Visual Composition -->
+          <div class="card panel-card col-span-8">
+            <div class="panel-head">
+              <h3 class="panel-title">📊 Code Metrics &amp; Quality Score</h3>
+              <span id="qualityScoreBadge" class="badge badge-success">Score: --/100</span>
+            </div>
+            <div id="codeMetricsBody"></div>
+          </div>
+
+          <!-- 3. Function Analysis -->
+          <div class="card panel-card col-span-6">
+            <div class="panel-head">
+              <h3 class="panel-title">⚙️ Function Analysis</h3>
+              <span id="functionCountBadge" class="badge badge-neutral">0 functions</span>
+            </div>
+            <div id="functionAnalysisBody" class="scroll-box"></div>
+          </div>
+
+          <!-- 4. Class Analysis -->
+          <div class="card panel-card col-span-6">
+            <div class="panel-head">
+              <h3 class="panel-title">🧩 Class Analysis</h3>
+              <span id="classCountBadge" class="badge badge-neutral">0 classes</span>
+            </div>
+            <div id="classAnalysisBody" class="scroll-box"></div>
+          </div>
+
+          <!-- 5. Import Analysis -->
+          <div class="card panel-card col-span-4">
+            <div class="panel-head">
+              <h3 class="panel-title">📦 Import Analysis</h3>
+              <span id="importCountBadge" class="badge badge-neutral">0 imports</span>
+            </div>
+            <div id="importAnalysisBody" class="scroll-box"></div>
+          </div>
+
+          <!-- 6. Bug Findings -->
+          <div class="card panel-card col-span-8">
+            <div class="panel-head">
+              <h3 class="panel-title">🪲 Bug Findings</h3>
+              <div style="display:flex;gap:6px;flex-wrap:wrap;" id="bugFilterRow">
+                <button type="button" class="pill-btn" data-bug-filter="all">All</button>
+                <button type="button" class="pill-btn" data-bug-filter="critical">Critical</button>
+                <button type="button" class="pill-btn" data-bug-filter="warning">Warning</button>
+                <button type="button" class="pill-btn" data-bug-filter="info">Info</button>
+              </div>
+            </div>
+            <div id="bugFindingsBody" class="scroll-box"></div>
+          </div>
+
+          <!-- 7. Generated Test Cases -->
+          <div class="card panel-card col-span-6">
+            <div class="panel-head">
+              <h3 class="panel-title">🧪 Generated Test Cases</h3>
+              <span class="badge badge-warning">Suggestions Only · Not Executed</span>
+            </div>
+            <div id="testCasesBody" class="scroll-box"></div>
+          </div>
+
+          <!-- 8. AI Review Summary Card -->
+          <div class="card panel-card col-span-6">
+            <div class="panel-head">
+              <h3 class="panel-title">✨ AI Review Summary</h3>
+              <span id="aiMiniStatusBadge" class="badge badge-ai">Pending</span>
+            </div>
+            <div id="aiSummaryCardBody" class="scroll-box" style="font-size: 0.88rem;"></div>
+            <div style="margin-top: 12px;">
+              <a href="#ai-review" class="btn btn-soft btn-sm">Open Full AI Review Panel ↓</a>
+            </div>
+          </div>
+
+          <!-- Pipeline Warnings / Syntax Errors (if any) -->
+          <div id="errorsPanel" class="card panel-card col-span-12 hidden">
+            <div class="panel-head">
+              <h3 class="panel-title" style="color: var(--warning);">⚠️ File &amp; Pipeline Notices</h3>
+              <span id="errorsCountBadge" class="badge badge-warning">0 notices</span>
+            </div>
+            <div id="errorsListBody" class="scroll-box"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- E. AI Agent Workflow Section -->
+    <section id="workflow" class="section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-pill">Multi-Agent Architecture</span>
+          <h2 class="section-title">How Our 6 Specialized Agents Collaborate</h2>
+          <p class="section-subtitle">
+            Each stage executes sequentially with isolated error handling and real backend status reporting.
+          </p>
+        </div>
+
+        <div id="workflowGrid" class="workflow-grid">
+          <!-- Populated cleanly in JS and updated dynamically from real backend stage states -->
+        </div>
+      </div>
+    </section>
+
+    <!-- F. Code Debugger Section -->
+    <section id="debugger" class="section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-pill">Interactive Code Debugger</span>
+          <h2 class="section-title">Validate Python Syntax &amp; Preview AI Fixes</h2>
+          <p class="section-subtitle">
+            Python AST validation and Gemini-assisted syntax repair are active without executing submitted code on the server. Multi-language analyzers are clearly marked on our roadmap.
+          </p>
+        </div>
+
+        <div class="card debugger-card">
+          <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:14px;margin-bottom:14px;">
+            <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+              <label for="debugLanguage" style="font-weight:600;font-size:0.9rem;">Language:</label>
+              <select id="debugLanguage" class="select-input" style="width:auto;min-width:240px;padding:9px 14px;">
+                <option value="python">Python (AST + AI Auto-Fix Active)</option>
+                <option value="c">C — Planned (Coming Soon)</option>
+                <option value="cpp">C++ — Planned (Coming Soon)</option>
+                <option value="java">Java — Planned (Coming Soon)</option>
+                <option value="javascript">JavaScript — Planned (Coming Soon)</option>
+                <option value="html">HTML — Planned (Coming Soon)</option>
+                <option value="css">CSS — Planned (Coming Soon)</option>
+                <option value="r">R — Planned (Coming Soon)</option>
+              </select>
+            </div>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;">
+              <button type="button" id="loadSampleBugBtn" class="pill-btn">Load Sample Broken Python</button>
+              <button type="button" id="loadValidSampleBtn" class="pill-btn">Load Valid Sample</button>
+            </div>
+          </div>
+
+          <div id="roadmapNotice" class="status-banner status-warning hidden" style="margin-top:0;margin-bottom:14px;"></div>
+
+          <textarea
+            id="rawCodeInput"
+            class="code-textarea"
+            placeholder="def calculate_total(items)&#10;    total = sum(items)&#10;    return total"
+          ></textarea>
+
+          <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px;margin-top:14px;">
+            <span style="font-size:0.82rem;color:var(--text-secondary);">
+              🔒 Safe static inspection: code is parsed with <code>ast.parse()</code> and never executed on the server.
+            </span>
+            <button type="button" id="debugBtn" class="btn btn-primary">
+              <span id="debugSpinner" class="spinner hidden"></span>
+              <span id="debugBtnText">⚡ Analyze &amp; Auto-Fix</span>
+            </button>
+          </div>
+
+          <div id="debugStatus" class="status-banner hidden"></div>
+
+          <div id="debugResultSection" class="hidden" style="margin-top:18px;">
+            <div class="ai-subcard" style="margin-bottom:14px;">
+              <strong style="color:var(--purple-deep);display:block;margin-bottom:4px;">Root Cause &amp; Validation Explanation</strong>
+              <p id="debugExplanation" style="margin:0;font-size:0.9rem;color:var(--text-main);"></p>
+            </div>
+
+            <div class="code-compare-grid">
+              <div>
+                <h4 style="margin:0 0 8px;font-size:0.9rem;color:var(--error);">Original Code</h4>
+                <pre id="codeBefore" class="code-pre"></pre>
+              </div>
+              <div>
+                <h4 style="margin:0 0 8px;font-size:0.9rem;color:var(--success);">Suggested / AST-Validated Code</h4>
+                <pre id="codeAfter" class="code-pre"></pre>
+              </div>
+            </div>
+
+            <div id="debugDiffWrap" class="hidden" style="margin-top:14px;">
+              <h4 style="margin:0 0 8px;font-size:0.9rem;color:var(--purple-deep);">Unified Diff</h4>
+              <pre id="debugDiff" class="code-pre"></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- G. AI Code Review Section -->
+    <section id="ai-review" class="section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-pill">Gemini AI Code Review</span>
+          <h2 class="section-title">Architectural Insights &amp; Prioritized Actions</h2>
+          <p class="section-subtitle">
+            Powered by Google Gemini. AI-generated observations complement static analysis and are not a substitute for a formal security audit.
+          </p>
+        </div>
+
+        <div class="card ai-review-shell">
+          <div class="ai-robot-frame">
+            <img
+              src="/static/assets/review-robot.jpg"
+              alt="AI Code Review Robot Assistant"
+              class="ai-robot-img"
+              onerror="this.classList.add('hidden'); document.getElementById('reviewRobotFallback').classList.remove('hidden');"
+            />
+            <div id="reviewRobotFallback" class="hidden" style="padding:18px 0;">
+              <svg viewBox="0 0 180 180" width="160" height="160" aria-label="AI Review Robot Fallback">
+                <circle cx="90" cy="90" r="72" fill="#FCE7F3"/>
+                <rect x="48" y="48" width="84" height="62" rx="22" fill="#FFF" stroke="#6D28D9" stroke-width="3"/>
+                <rect x="60" y="64" width="60" height="28" rx="12" fill="#252238"/>
+                <circle cx="77" cy="78" r="5" fill="#EC4899"/>
+                <circle cx="103" cy="78" r="5" fill="#A78BFA"/>
+                <path d="M62 122h56a16 16 0 0 1 16 16v10H46v-10a16 16 0 0 1 16-16z" fill="#FFF" stroke="#EC4899" stroke-width="3"/>
+              </svg>
+            </div>
+            <div style="margin-top:12px;">
+              <span id="aiReviewStateBadge" class="badge badge-neutral">Awaiting Analysis</span>
+            </div>
+            <p id="aiReviewModelNote" style="margin:10px 0 0;font-size:0.78rem;color:var(--text-secondary);">
+              Run a project analysis to generate an AI review.
+            </p>
+          </div>
+
+          <div class="ai-subgrid">
+            <div class="ai-subcard" style="grid-column: 1 / -1;">
+              <h4 style="margin:0 0 6px;color:var(--purple-deep);">Executive Review Summary</h4>
+              <p id="aiReviewSummary" style="margin:0;font-size:0.92rem;color:var(--text-secondary);">
+                No project analyzed yet. Submit a directory in the Project Analyzer to view AI architectural feedback.
+              </p>
+            </div>
+            <div class="ai-subcard">
+              <h4 style="margin:0 0 6px;color:var(--text-main);">Architecture Feedback</h4>
+              <p id="aiArchFeedback" style="margin:0;font-size:0.86rem;color:var(--text-secondary);">—</p>
+            </div>
+            <div class="ai-subcard">
+              <h4 style="margin:0 0 6px;color:var(--text-main);">Maintainability Observations</h4>
+              <p id="aiMaintainability" style="margin:0;font-size:0.86rem;color:var(--text-secondary);">—</p>
+            </div>
+            <div class="ai-subcard">
+              <h4 style="margin:0 0 6px;color:var(--text-main);">Potential Bug &amp; Security Observations <span class="badge badge-ai">AI-Suggested</span></h4>
+              <ul id="aiSecurityList" style="margin:0;padding-left:18px;font-size:0.86rem;color:var(--text-secondary);">
+                <li>Awaiting analysis</li>
+              </ul>
+            </div>
+            <div class="ai-subcard">
+              <h4 style="margin:0 0 6px;color:var(--text-main);">Recommended Action Items</h4>
+              <ol id="aiActionList" style="margin:0;padding-left:18px;font-size:0.86rem;color:var(--text-secondary);">
+                <li>Awaiting analysis</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- H. Reports Section -->
+    <section id="reports" class="section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-pill">Automated Reports</span>
+          <h2 class="section-title">Exportable JSON &amp; HTML Quality Reports</h2>
+          <p class="section-subtitle">
+            Every completed analysis generates structured JSON and styled HTML reports ready to view or download.
+          </p>
+        </div>
+
+        <div class="reports-grid">
+          <div class="card panel-card">
+            <div class="panel-head">
+              <h3 class="panel-title">📄 Report Summary &amp; Exports</h3>
+              <span id="reportStatusBadge" class="badge badge-neutral">Checking...</span>
+            </div>
+            <div id="reportMetaBody" style="font-size:0.9rem;color:var(--text-secondary);margin-bottom:16px;">
+              Run an analysis or load the latest saved report from disk.
+            </div>
+            <div style="display:flex;flex-wrap:wrap;gap:10px;">
+              <a id="viewHtmlReportBtn" href="/reports/html" target="_blank" rel="noopener" class="btn btn-primary btn-sm">View HTML Report ↗</a>
+              <a id="downloadHtmlReportBtn" href="/reports/download/html" class="btn btn-secondary btn-sm">Download HTML</a>
+              <a id="downloadJsonReportBtn" href="/reports/download/json" class="btn btn-soft btn-sm">Download JSON</a>
+              <button type="button" id="refreshLatestReportBtn" class="btn btn-secondary btn-sm">Refresh Latest</button>
+            </div>
+          </div>
+
+          <div class="card panel-card">
+            <div class="panel-head">
+              <h3 class="panel-title">🧾 JSON Report Preview</h3>
+              <span class="badge badge-ai">analysis_report.json</span>
+            </div>
+            <pre id="jsonReportPreview" class="code-pre" style="max-height:240px;">No report loaded yet.</pre>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- I. Features Section -->
+    <section id="features" class="section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-pill">Platform Capabilities</span>
+          <h2 class="section-title">Built for Reliable, Developer-First QA</h2>
+          <p class="section-subtitle">
+            Eight integrated engineering capabilities working together in a clean, extensible Python stack.
+          </p>
+        </div>
+
+        <div class="features-grid">
+          <div class="card card-hover feature-card">
+            <div class="stat-icon" style="background:var(--pink-soft);color:var(--pink-primary);">🧠</div>
+            <h3 style="margin:0 0 6px;font-size:1.02rem;">Intelligent Code Analysis</h3>
+            <p style="margin:0;font-size:0.86rem;color:var(--text-secondary);">Scans Python repositories, extracts frameworks and dependencies, and measures project complexity in a single pass.</p>
+          </div>
+          <div class="card card-hover feature-card">
+            <div class="stat-icon" style="background:var(--error-soft);color:var(--error);">🔍</div>
+            <h3 style="margin:0 0 6px;font-size:1.02rem;">Automated Bug Detection</h3>
+            <p style="margin:0;font-size:0.86rem;color:var(--text-secondary);">Identifies bare except clauses, hardcoded secret literals, TODO markers, print leaks, and oversized functions.</p>
+          </div>
+          <div class="card card-hover feature-card">
+            <div class="stat-icon" style="background:var(--lavender);color:var(--purple-deep);">🌳</div>
+            <h3 style="margin:0 0 6px;font-size:1.02rem;">AST-Based Code Inspection</h3>
+            <p style="margin:0;font-size:0.86rem;color:var(--text-secondary);">Uses Python's native Abstract Syntax Tree to inspect functions, classes, and imports accurately without executing code.</p>
+          </div>
+          <div class="card card-hover feature-card">
+            <div class="stat-icon" style="background:var(--success-soft);color:var(--success);">🧪</div>
+            <h3 style="margin:0 0 6px;font-size:1.02rem;">Test Case Generation</h3>
+            <p style="margin:0;font-size:0.86rem;color:var(--text-secondary);">Produces parameter-aware test scenarios and starter pytest skeletons from discovered function signatures.</p>
+          </div>
+          <div class="card card-hover feature-card">
+            <div class="stat-icon" style="background:var(--pink-soft);color:var(--purple-deep);">✨</div>
+            <h3 style="margin:0 0 6px;font-size:1.02rem;">AI-Powered Code Review</h3>
+            <p style="margin:0;font-size:0.86rem;color:var(--text-secondary);">Integrates Google Gemini for architecture health summaries and top action items with graceful timeout fallbacks.</p>
+          </div>
+          <div class="card card-hover feature-card">
+            <div class="stat-icon" style="background:var(--warning-soft);color:var(--warning);">📊</div>
+            <h3 style="margin:0 0 6px;font-size:1.02rem;">Automated HTML &amp; JSON Reports</h3>
+            <p style="margin:0;font-size:0.86rem;color:var(--text-secondary);">Exports clean, escaped HTML dashboards and machine-readable JSON reports after every successful scan.</p>
+          </div>
+          <div class="card card-hover feature-card">
+            <div class="stat-icon" style="background:var(--lavender);color:var(--purple-deep);">⚡</div>
+            <h3 style="margin:0 0 6px;font-size:1.02rem;">FastAPI-Based Backend</h3>
+            <p style="margin:0;font-size:0.86rem;color:var(--text-secondary);">Non-blocking FastAPI endpoints with Pydantic validation, stage progress polling, and consistent JSON responses.</p>
+          </div>
+          <div class="card card-hover feature-card">
+            <div class="stat-icon" style="background:var(--pink-soft);color:var(--pink-primary);">🤖</div>
+            <h3 style="margin:0 0 6px;font-size:1.02rem;">Multi-Agent Architecture</h3>
+            <p style="margin:0;font-size:0.86rem;color:var(--text-secondary);">Six decoupled agents collaborate in sequence so one file error never crashes the entire pipeline.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- J. About Project Section -->
+    <section id="about" class="section">
+      <div class="container">
+        <div class="card about-box">
+          <span class="section-pill">About AI QA Engineer</span>
+          <h2 class="section-title" style="margin-bottom:12px;">Reducing Manual Review Effort With Transparent Engineering</h2>
+          <p style="margin:0 0 12px;color:var(--text-secondary);max-width:860px;">
+            AI QA Engineer combines deterministic Python AST static analysis, specialized software quality agents, automated test-case generation, and Google Gemini AI-powered review to help developers catch defects earlier and maintain cleaner codebases.
+          </p>
+          <p style="margin:0;color:var(--text-secondary);max-width:860px;">
+            Built with Python, FastAPI, Pydantic, Uvicorn, and a modern responsive frontend, the platform keeps static analysis fast and reliable even when external AI services are offline.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- K. Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="brand-logo" style="margin-bottom:10px;">
+            <span class="brand-badge" aria-hidden="true">QA</span>
+            <span>AI QA <span class="gradient-text">Engineer</span></span>
+          </div>
+          <p style="margin:0;font-size:0.88rem;color:var(--text-secondary);max-width:340px;">
+            Intelligent Python code quality analysis, bug detection, test-case suggestions, and Gemini-powered review.
+          </p>
+        </div>
+        <div>
+          <h4 style="margin:0 0 10px;font-size:0.92rem;">Navigation</h4>
+          <div style="display:flex;flex-direction:column;gap:6px;">
+            <a href="#home">Home</a>
+            <a href="#analyzer">Project Analyzer</a>
+            <a href="#debugger">Code Debugger</a>
+            <a href="#ai-review">AI Review</a>
+            <a href="#reports">Reports</a>
+          </div>
+        </div>
+        <div>
+          <h4 style="margin:0 0 10px;font-size:0.92rem;">Technology Stack</h4>
+          <div style="display:flex;flex-wrap:wrap;gap:6px;">
+            <span class="badge badge-ai">Python AST</span>
+            <span class="badge badge-ai">FastAPI</span>
+            <span class="badge badge-ai">Pydantic</span>
+            <span class="badge badge-ai">Uvicorn</span>
+            <span class="badge badge-ai">Google Gemini</span>
+          </div>
+        </div>
+      </div>
+      <div style="border-top:1px solid var(--border-soft);padding-top:16px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;font-size:0.82rem;color:var(--text-secondary);">
+        <span>© 2026 AI QA Engineer Platform. All rights reserved.</span>
+        <span>Static AST Analysis · Safe Non-Executing Inspection</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Directory Browser Modal -->
+  <div id="browseModal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="browseModalTitle">
+    <div class="card modal-card">
+      <div class="panel-head" style="margin-bottom:8px;">
+        <h3 id="browseModalTitle" class="panel-title">📂 Select Project Directory</h3>
+        <button type="button" id="closeBrowseModalBtn" class="btn btn-secondary btn-sm">✕</button>
+      </div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
+        <button type="button" id="browseUpBtn" class="btn btn-secondary btn-sm">⬆ Parent</button>
+        <code id="browseCurrentPath" style="font-size:0.8rem;color:var(--purple-deep);word-break:break-all;flex:1;"></code>
+      </div>
+      <div id="browseDriveRow" style="display:flex;gap:6px;flex-wrap:wrap;margin-top:8px;"></div>
+      <div id="browseFolderList" class="folder-list"></div>
+      <div style="display:flex;justify-content:flex-end;gap:10px;">
+        <button type="button" id="cancelBrowseBtn" class="btn btn-secondary btn-sm">Cancel</button>
+        <button type="button" id="selectCurrentFolderBtn" class="btn btn-primary btn-sm">Select This Folder</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>

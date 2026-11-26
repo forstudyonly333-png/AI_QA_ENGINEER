@@ -1,0 +1,17 @@
+venv/
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+.git/
+.gitignore
+.vscode/
+.env
+.env.*
+tests/
+tempCodeRunnerFile.py
+test.py
+reports/analysis_history.json
+reports/analysis_report.json
+reports/analysis_report.html

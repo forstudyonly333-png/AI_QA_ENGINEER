@@ -1,0 +1,62 @@
+def big_function():
+
+    print("Line 1")
+    print("Line 2")
+    print("Line 3")
+    print("Line 4")
+    print("Line 5")
+    print("Line 6")
+    print("Line 7")
+    print("Line 8")
+    print("Line 9")
+    print("Line 10")
+    print("Line 11")
+    print("Line 12")
+    print("Line 13")
+    print("Line 14")
+    print("Line 15")
+    print("Line 16")
+    print("Line 17")
+    print("Line 18")
+    print("Line 19")
+    print("Line 20")
+    print("Line 21")
+    print("Line 22")
+    print("Line 23")
+    print("Line 24")
+    print("Line 25")
+    print("Line 26")
+    print("Line 27")
+    print("Line 28")
+    print("Line 29")
+    print("Line 30")
+    print("Line 31")
+    print("Line 32")
+    print("Line 33")
+    print("Line 34")
+    print("Line 35")
+    print("Line 36")
+    print("Line 37")
+    print("Line 38")
+    print("Line 39")
+    print("Line 40")
+    print("Line 41")
+
+def add(a, b):
+
+    return a+b 
+
+
+from agents.ai_reviewer import AIReviewerAgent
+
+code = """ 
+def login(username,password) : 
+    
+    print(password)
+    
+    return True
+"""
+
+ai = AIReviewerAgent()
+
+print(ai.review(code))
